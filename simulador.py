@@ -9,14 +9,14 @@ opcao = st.radio( "Selecione seu grupo:",("Crescimento","Resultado"))
 
 if opcao == "Crescimento":
     input_FatXP=st.number_input("Faturamento XP total do ano",format="%.0f")
-    input_FatBNK=st.number_input("Faturamento BNK total do ano",format="%.0f")
-    input_Incremento=st.number_input("Incremento total do ano",format="%.0f")
+    input_FatBNK=st.number_input("Faturamento Cross Selling total do ano",format="%.0f")
+    input_Incremento=st.number_input("Captação Líquida + Transferência total do ano",format="%.0f")
     input_Contas=st.number_input("Total de contas Ativadas no ano",format="%.0f")
     input_ROA=st.number_input("ROA médio do ano")
 elif opcao == "Resultado":
     input_FatXP=st.number_input(label="Faturamento XP total do ano",format="%.0f")
-    input_FatBNK=st.number_input(label="Faturamento BNK total do ano",format="%.0f")
-    input_Incremento=st.number_input(label="Incremento total do ano",format="%.0f")
+    input_FatBNK=st.number_input(label="Faturamento Cross Selling total do ano",format="%.0f")
+    input_Incremento=st.number_input(label="Captação Líquida + Transferência total do ano",format="%.0f")
     input_ROA=st.number_input(label="ROA médio do ano")
 
 if st.button("Calcular Premiação"):
@@ -96,7 +96,7 @@ if st.button("Calcular Premiação"):
         premt4="{:,.0f}".format(premt4) 
         premt4 = premt4.replace(",",".")
 
-        valores = [["Faturamento XP",pcf,pcf,pcf,pcf],["Faturamento BNK",pcbnk,pcbnk,pcbnk,pcbnk],["Incremento",pcinc,pcinc,pcinc,pcinc],["Ativação de contas",pccon,pccon,pccon,pccon],["Adicional ROA",pcroa,pcroa,pcroa,pcroa],["Adicional KPI Global",kpi1,kpi2,kpi3,kpi4],["Premiação Total",premt1,premt2,premt3,premt4]]
+        valores = [["Faturamento XP",pcf,pcf,pcf,pcf],["Faturamento Cross Selling",pcbnk,pcbnk,pcbnk,pcbnk],["Captação Líquida + Transferências",pcinc,pcinc,pcinc,pcinc],["Ativação de contas",pccon,pccon,pccon,pccon],["Adicional ROA",pcroa,pcroa,pcroa,pcroa],["Adicional KPI Global",kpi1,kpi2,kpi3,kpi4],["Premiação Total",premt1,premt2,premt3,premt4]]
         df = pd.DataFrame(valores,columns=['KPI','Meta Global <80%','Meta Global >80%','Meta Global >90%','Meta Global >100%'])
 
         valores2 = [["Faturamento XP",pcf],["Faturamento BNK",pcbnk],["Incremento",pcinc],["Ativação de contas",pccon],["Adicional ROA",pcroa]]
@@ -173,7 +173,7 @@ if st.button("Calcular Premiação"):
         premt4="{:,.0f}".format(premt4) 
         premt4 = premt4.replace(",",".")
         
-        valores = [["Faturamento XP",pcf,pcf,pcf,pcf],["Faturamento BNK",pcbnk,pcbnk,pcbnk,pcbnk],["Incremento",pcinc,pcinc,pcinc,pcinc],["Adicional ROA",pcroa,pcroa,pcroa,pcroa],["Adicional KPI Global",kpi1,kpi2,kpi3,kpi4],["Premiação Total",premt1,premt2,premt3,premt4]]
+        valores = [["Faturamento XP",pcf,pcf,pcf,pcf],["Faturamento Cross Selling",pcbnk,pcbnk,pcbnk,pcbnk],["Captação Líquida + Transferências",pcinc,pcinc,pcinc,pcinc],["Adicional ROA",pcroa,pcroa,pcroa,pcroa],["Adicional KPI Global",kpi1,kpi2,kpi3,kpi4],["Premiação Total",premt1,premt2,premt3,premt4]]
         df = pd.DataFrame(valores,columns=['KPI','Meta Global <80%','Meta Global >80%','Meta Global >90%','Meta Global >100%'])
 
         st.dataframe(df) 
