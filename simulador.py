@@ -69,9 +69,9 @@ if st.button("Calcular Premiação"):
         pcroa = pcroa.replace(",",".")
 
         kpi1 = 0
-        kpi2 = (premt*0.25)
-        kpi3 = (premt*0.75)
-        kpi4 = (premt*1)
+        kpi2 = (prem*0.25)
+        kpi3 = (prem*0.75)
+        kpi4 = (prem*1)
 
         premt1 = premt
         premt2 = (premt+kpi2)
@@ -146,9 +146,9 @@ if st.button("Calcular Premiação"):
         pcroa = pcroa.replace(",",".")
 
         kpi1 = 0
-        kpi2 = (premt*0.25)
-        kpi3 = (premt*0.75)
-        kpi4 = (premt*1)
+        kpi2 = (prem*0.25)
+        kpi3 = (prem*0.75)
+        kpi4 = (prem*1)
 
         premt1 = premt
         premt2 = (premt+kpi2)
