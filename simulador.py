@@ -119,7 +119,8 @@ if st.button("Calcular Premiação"):
 
         valores2 = [["Faturamento XP",pcf],["Faturamento BNK",pcbnk],["Incremento",pcinc],["Ativação de contas",pccon],["Adicional ROA",pcroa]]
         df2 = pd.DataFrame(valores2,columns=['KPI','Premiação'])
-
+        
+        st.caption(f"Premiações mostradas abaixo estão em Reais por ações da Companhia.")
         st.dataframe(df) 
 
         
@@ -193,5 +194,6 @@ if st.button("Calcular Premiação"):
         
         valores = [["Faturamento XP",pcf,pcf,pcf,pcf],["Faturamento Cross Selling",pcbnk,pcbnk,pcbnk,pcbnk],["Captação Líquida + Transferências",pcinc,pcinc,pcinc,pcinc],["Adicional ROA",pcroa,pcroa,pcroa,pcroa],["Adicional KPI Global",kpi1,kpi2,kpi3,kpi4],["Premiação Total",premt1,premt2,premt3,premt4]]
         df = pd.DataFrame(valores,columns=['KPI','Meta Global <80%','Meta Global >80%','Meta Global >90%','Meta Global >100%'])
-
+        
+        st.caption(f"Premiações mostradas abaixo estão em Reais por ações da Companhia.")
         st.dataframe(df) 
