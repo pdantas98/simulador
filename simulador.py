@@ -9,6 +9,9 @@ opcao = st.radio( "Selecione seu grupo:",("Crescimento","Resultado"))
 
 if opcao == "Crescimento":
     input_FatXP=st.number_input("Faturamento XP total do ano",format="%.0f")
+    fxp="{:,.0f}".format(input_FatXP) 
+    fxp = fxp.replace(",",".")
+    st.caption(f"Receita XP Selecionada: R$ {fxp}")
     input_FatBNK=st.number_input("Faturamento Cross Selling total do ano",format="%.0f")
     input_Incremento=st.number_input("Captação Líquida + Transferência total do ano",format="%.0f")
     input_Contas=st.number_input("Total de contas Ativadas no ano",format="%.0f")
