@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title('Simulador do Partnership 2022')
+st.title('Simulador do Partnership 2023')
 st.caption("Use este simulador para calcular quanto de premiação você poderá receber ao final do ano. Importante frisar que a premiação é calculada em cima de valores preenchidos por você e a premição é uma aproximação.")
 
 opcao = st.radio( "Selecione seu grupo:",("Crescimento","Resultado"))
