@@ -8,14 +8,10 @@ st.caption("Use este simulador para calcular quanto de premiação você poderá
 opcao = st.radio( "Selecione seu grupo:",("Crescimento","Resultado"))
 
 if opcao == "Crescimento":
-    input_FatXP=st.number_input("Faturamento XP total do ano",format="%.0f")
+    input_FatXP=st.number_input("Faturamento total do ano",format="%.0f")
     fxp="{:,.0f}".format(input_FatXP) 
     fxp = fxp.replace(",",".")
-    st.caption(f"Receita XP Selecionada: R$ {fxp}")
-    input_FatBNK=st.number_input("Faturamento Cross Selling total do ano",format="%.0f")
-    fbnk="{:,.0f}".format(input_FatBNK) 
-    fbnk = fbnk.replace(",",".")
-    st.caption(f"Receita Cross Selling Selecionada: R$ {fbnk}")
+    st.caption(f"Receita Selecionada: R$ {fxp}")
     input_Incremento=st.number_input("Captação Líquida + Transferência total do ano",format="%.0f")
     inc="{:,.0f}".format(input_Incremento) 
     inc = inc.replace(",",".")
@@ -23,14 +19,10 @@ if opcao == "Crescimento":
     input_Contas=st.number_input("Total de contas Ativadas no ano",format="%.0f")
     input_ROA=st.number_input("ROA médio do ano")
 elif opcao == "Resultado":
-    input_FatXP=st.number_input("Faturamento XP total do ano",format="%.0f")
+    input_FatXP=st.number_input("Faturamento total do ano",format="%.0f")
     fxp="{:,.0f}".format(input_FatXP) 
     fxp = fxp.replace(",",".")
-    st.caption(f"Receita XP Selecionada: R$ {fxp}")
-    input_FatBNK=st.number_input("Faturamento Cross Selling total do ano",format="%.0f")
-    fbnk="{:,.0f}".format(input_FatBNK) 
-    fbnk = fbnk.replace(",",".")
-    st.caption(f"Receita Cross Selling Selecionada: R$ {fbnk}")
+    st.caption(f"Receita Selecionada: R$ {fxp}")
     input_Incremento=st.number_input("Captação Líquida + Transferência total do ano",format="%.0f")
     inc="{:,.0f}".format(input_Incremento) 
     inc = inc.replace(",",".")
@@ -46,23 +38,16 @@ if st.button("Calcular Premiação"):
             pcf = ((input_FatXP/1000000)*5000)
         if input_FatXP < 100000:
             pcf = 0
-        
-        if input_FatBNK >= 25000:
-            pcbnk = ((input_FatBNK/1000000)*7500)
-        if input_FatBNK < 25000:
-            pcbnk = 0
-        
         if input_Incremento >= 6000000:
             pcinc = ((input_Incremento/1000000)*400)
         if input_Incremento < 6000000:
             pcinc = 0
-        
         if input_Contas >= 48:
             pccon = (input_Contas*100)
         if input_Contas < 48:
             pccon = 0
         
-        prem = (pcinc + pccon + pcf + pcbnk)
+        prem = (pcinc + pccon + pcf)
         #Variante do ROA
         if input_ROA >= 0.75:
             pcroa = (prem*1)
@@ -73,12 +58,10 @@ if st.button("Calcular Premiação"):
         elif input_ROA < 0.30:
             pcroa = (prem*0)
         
-        premt = (pcinc + pccon + pcf + pcbnk + pcroa)
+        premt = (pcinc + pccon + pcf + pcroa)
 
         pcf="{:,.0f}".format(pcf) 
         pcf = pcf.replace(",",".")
-        pcbnk="{:,.0f}".format(pcbnk) 
-        pcbnk = pcbnk.replace(",",".")
         pccon="{:,.0f}".format(pccon) 
         pccon = pccon.replace(",",".")
         pcinc="{:,.0f}".format(pcinc) 
@@ -114,10 +97,10 @@ if st.button("Calcular Premiação"):
         premt4="{:,.0f}".format(premt4) 
         premt4 = premt4.replace(",",".")
 
-        valores = [["Faturamento XP",pcf,pcf,pcf,pcf],["Faturamento Cross Selling",pcbnk,pcbnk,pcbnk,pcbnk],["Captação Líquida + Transferências",pcinc,pcinc,pcinc,pcinc],["Ativação de contas",pccon,pccon,pccon,pccon],["Adicional ROA",pcroa,pcroa,pcroa,pcroa],["Adicional KPI Global",kpi1,kpi2,kpi3,kpi4],["Premiação Total",premt1,premt2,premt3,premt4]]
+        valores = [["Faturamento XP",pcf,pcf,pcf,pcf],["Captação Líquida + Transferências",pcinc,pcinc,pcinc,pcinc],["Ativação de contas",pccon,pccon,pccon,pccon],["Adicional ROA",pcroa,pcroa,pcroa,pcroa],["Adicional KPI Global",kpi1,kpi2,kpi3,kpi4],["Premiação Total",premt1,premt2,premt3,premt4]]
         df = pd.DataFrame(valores,columns=['KPI','Meta Global <80%','Meta Global >80%','Meta Global >90%','Meta Global >100%'])
 
-        valores2 = [["Faturamento XP",pcf],["Faturamento BNK",pcbnk],["Incremento",pcinc],["Ativação de contas",pccon],["Adicional ROA",pcroa]]
+        valores2 = [["Faturamento XP",pcf],["Incremento",pcinc],["Ativação de contas",pccon],["Adicional ROA",pcroa]]
         df2 = pd.DataFrame(valores2,columns=['KPI','Premiação'])
         
         st.caption(f"Premiações mostradas abaixo estão em Reais por ações da Companhia.")
@@ -131,18 +114,12 @@ if st.button("Calcular Premiação"):
             pcf = ((input_FatXP/1000000)*10000)
         if input_FatXP < 200000:
             pcf = 0
-        
-        if input_FatBNK >= 50000:
-            pcbnk = ((input_FatBNK/1000000)*15000)
-        if input_FatBNK < 50000:
-            pcbnk = 0
-        
         if input_Incremento >= 20000000:
             pcinc = ((input_Incremento/1000000)*800)
         if input_Incremento < 20000000:
             pcinc = 0
         
-        prem = (pcinc + pcf + pcbnk)
+        prem = (pcinc + pcf)
         #Variante do ROA
         if input_ROA >= 0.75:
             pcroa = (prem*1)
@@ -153,12 +130,10 @@ if st.button("Calcular Premiação"):
         elif input_ROA < 0.30:
             pcroa = (prem*0)
         
-        premt = (pcinc + pcf + pcbnk + pcroa)
+        premt = (pcinc + pcf + pcroa)
 
         pcf="{:,.0f}".format(pcf) 
         pcf = pcf.replace(",",".")
-        pcbnk="{:,.0f}".format(pcbnk) 
-        pcbnk = pcbnk.replace(",",".")
         pcinc="{:,.0f}".format(pcinc) 
         pcinc = pcinc.replace(",",".")
         pcroa="{:,.0f}".format(pcroa) 
@@ -192,7 +167,7 @@ if st.button("Calcular Premiação"):
         premt4="{:,.0f}".format(premt4) 
         premt4 = premt4.replace(",",".")
         
-        valores = [["Faturamento XP",pcf,pcf,pcf,pcf],["Faturamento Cross Selling",pcbnk,pcbnk,pcbnk,pcbnk],["Captação Líquida + Transferências",pcinc,pcinc,pcinc,pcinc],["Adicional ROA",pcroa,pcroa,pcroa,pcroa],["Adicional KPI Global",kpi1,kpi2,kpi3,kpi4],["Premiação Total",premt1,premt2,premt3,premt4]]
+        valores = [["Faturamento XP",pcf,pcf,pcf,pcf],["Captação Líquida + Transferências",pcinc,pcinc,pcinc,pcinc],["Adicional ROA",pcroa,pcroa,pcroa,pcroa],["Adicional KPI Global",kpi1,kpi2,kpi3,kpi4],["Premiação Total",premt1,premt2,premt3,premt4]]
         df = pd.DataFrame(valores,columns=['KPI','Meta Global <80%','Meta Global >80%','Meta Global >90%','Meta Global >100%'])
         
         st.caption(f"Premiações mostradas abaixo estão em Reais por ações da Companhia.")
