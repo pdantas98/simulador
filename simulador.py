@@ -4,6 +4,11 @@ import numpy as np
 
 st.title('Simulador do Partnership 2023')
 st.caption("Use este simulador para calcular quanto de premiação você poderá receber ao final do ano. Importante frisar que a premiação é calculada em cima de valores preenchidos por você e a premição é uma aproximação.")
+st.sidebar.text("Informações do Assessor")
+st.sidebar.button("Kpis Partnership")
+st.sidebar.button("Simulador Partnership")
+st.sidebar.button("Campanhas")
+st.sidebar.button("Meus Clientes")
 
 opcao = st.radio( "Selecione seu grupo:",("Crescimento","Resultado"))
 
